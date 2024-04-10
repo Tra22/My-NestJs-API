@@ -13,15 +13,15 @@ import {
     Query,
     UseGuards,
   } from '@nestjs/common';
-import { Response } from 'src/global/payload/responses/Response';
-import { PermissionGuard } from 'src/user/securities/permissions.security';
-import { Permissions } from 'src/user/decorators';
-import { PermissionService } from 'src/user/services/permission/permission.service';
-import { PermissionDto } from 'src/user/dtos/responses/permission/permission.dto';
-import { UpdatePermissionDto } from 'src/user/dtos/requests/permission/update-permission.dto';
-import { CreatePermissionDto } from 'src/user/dtos/requests/permission/create-permission.dto';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { PermissionService } from '../../services/permission/permission.service';
+import { PermissionGuard } from '../../securities/permissions.security';
+import { Permissions } from '../../decorators';
+import { PermissionDto } from '../../dtos/responses/permission/permission.dto';
+import { Response } from '../../../global/payload/responses/Response';
+import { CreatePermissionDto } from '../../dtos/requests/permission/create-permission.dto';
+import { UpdatePermissionDto } from '../../dtos/requests/permission/update-permission.dto';
   
   @ApiBearerAuth()
   @ApiTags('permissions')

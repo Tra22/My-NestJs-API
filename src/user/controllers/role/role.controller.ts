@@ -13,15 +13,15 @@ import {
     Query,
     UseGuards,
   } from '@nestjs/common';
-import { Response } from 'src/global/payload/responses/Response';
-import { PermissionGuard } from 'src/user/securities/permissions.security';
-import { Permissions } from 'src/user/decorators';
-import { RoleService } from 'src/user/services/role/role.service';
-import { RoleDto } from 'src/user/dtos/responses/role/role.dto';
-import { CreateRoleDto } from 'src/user/dtos/requests/role/create-role.dto';
-import { UpdateRoleDto } from 'src/user/dtos/requests/role/update-role.dto';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { RoleService } from '../../services/role/role.service';
+import { PermissionGuard } from '../../securities/permissions.security';
+import { Permissions } from '../../decorators';
+import { Response } from '../../../global/payload/responses/Response';
+import { RoleDto } from '../../dtos/responses/role/role.dto';
+import { CreateRoleDto } from '../../dtos/requests/role/create-role.dto';
+import { UpdateRoleDto } from '../../dtos/requests/role/update-role.dto';
   
   @ApiBearerAuth()
   @ApiTags('roles')

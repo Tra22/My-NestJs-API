@@ -3,8 +3,8 @@ import { AutomapperProfile, InjectMapper } from "@automapper/nestjs";
 import { Injectable } from "@nestjs/common";
 import { Permission } from "../../models/permission.model";
 import { PermissionDto } from "../../dtos/responses/permission/permission.dto";
-import { CreatePermissionDto } from "src/user/dtos/requests/permission/create-permission.dto";
-import { UpdatePermissionDto } from "src/user/dtos/requests/permission/update-permission.dto";
+import { CreatePermissionDto } from "../../dtos/requests/permission/create-permission.dto";
+import { UpdatePermissionDto } from "../../dtos/requests/permission/update-permission.dto";
 
 @Injectable()
 export class PermissionProfile extends AutomapperProfile {

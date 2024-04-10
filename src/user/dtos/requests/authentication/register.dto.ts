@@ -5,9 +5,9 @@ import {
     IsString,
     IsStrongPassword,
   } from 'class-validator';
-import { Match } from 'src/global/decorator/password/match.decorator';
-import { Unique } from 'src/user/decorators/unique.validation.decorator';
-import { User } from 'src/user/models';
+import { Unique } from '../../../decorators/unique.validation.decorator';
+import { User } from '../../../models';
+import { Match } from '../../../../global/decorator/password/match.decorator';
   
   export class RegisterDto {
     @AutoMap()

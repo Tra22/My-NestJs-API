@@ -6,12 +6,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
-import { Response } from 'src/global/payload/responses/Response';
-import { Role } from 'src/user/models/role.model';
-import { RoleDto } from 'src/user/dtos/responses/role/role.dto';
-import { CreateRoleDto } from 'src/user/dtos/requests/role/create-role.dto';
-import { UpdateRoleDto } from 'src/user/dtos/requests/role/update-role.dto';
 import { IPaginationOptions, Pagination, paginate } from 'nestjs-typeorm-paginate';
+import { Role } from '../../models/role.model';
+import { Response } from '../../../global/payload/responses/Response';
+import { RoleDto } from '../../dtos/responses/role/role.dto';
+import { CreateRoleDto } from '../../dtos/requests/role/create-role.dto';
+import { UpdateRoleDto } from '../../dtos/requests/role/update-role.dto';
 @Injectable()
 export class RoleService {
   constructor(

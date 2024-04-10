@@ -15,12 +15,12 @@ import {
   } from '@nestjs/common';
 import { UserService } from '../../services/user/user.service';
 import { UserDto } from '../../dtos/responses';
-import { CreateUserDto, UpdateUserDto } from 'src/user/dtos/requests';
-import { Response } from 'src/global/payload/responses/Response';
-import { PermissionGuard } from 'src/user/securities/permissions.security';
-import { Permissions } from 'src/user/decorators';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Permissions } from '../../decorators';
+import { PermissionGuard } from '../../securities/permissions.security';
+import { Response } from '../../../global/payload/responses/Response';
+import { CreateUserDto, UpdateUserDto } from '../../dtos/requests';
   
   @ApiBearerAuth()
   @ApiTags('users')

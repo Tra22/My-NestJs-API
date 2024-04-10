@@ -5,7 +5,7 @@ import { CreateUserDto, RegisterDto, UpdateUserDto } from "../../dtos/requests";
 import { User } from "../../models";
 import { UserDto } from "../../dtos/responses";
 import { UpdateProfileDto } from "../../dtos/requests/authentication/update-profile.dto";
-import { Role } from "src/user/models/role.model";
+import { Role } from "../../models/role.model";
 
 @Injectable()
 export class UserProfile extends AutomapperProfile {

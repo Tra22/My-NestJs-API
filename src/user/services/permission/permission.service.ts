@@ -6,12 +6,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
-import { Response } from 'src/global/payload/responses/Response';
-import { Permission } from 'src/user/models/permission.model';
-import { PermissionDto } from 'src/user/dtos/responses/permission/permission.dto';
-import { CreatePermissionDto } from 'src/user/dtos/requests/permission/create-permission.dto';
-import { UpdatePermissionDto } from 'src/user/dtos/requests/permission/update-permission.dto';
 import { IPaginationOptions, Pagination, paginate } from 'nestjs-typeorm-paginate';
+import { Permission } from '../../models/permission.model';
+import { Response } from '../../../global/payload/responses/Response';
+import { PermissionDto } from '../../dtos/responses/permission/permission.dto';
+import { CreatePermissionDto } from '../../dtos/requests/permission/create-permission.dto';
+import { UpdatePermissionDto } from '../../dtos/requests/permission/update-permission.dto';
 @Injectable()
 export class PermissionService {
   constructor(

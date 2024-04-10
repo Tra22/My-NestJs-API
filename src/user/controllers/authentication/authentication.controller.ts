@@ -1,12 +1,12 @@
 import { Body, ClassSerializerInterceptor, Controller, Delete, Get, HttpCode, HttpStatus, Patch, Post, Res, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { Response } from 'src/global/payload/responses/Response';
-import { SerializeUser } from 'src/user/decorators';
-import { RefreshtokenDto, RegisterDto, SigninDto } from 'src/user/dtos/requests';
-import { UpdateProfileDto } from 'src/user/dtos/requests/authentication/update-profile.dto';
-import { UserDto } from 'src/user/dtos/responses';
-import { AccessTokenSecurity, RefreshTokenSecurity } from 'src/user/securities';
-import { AuthenticationService } from 'src/user/services/authentication/authentication.service';
+import { Response } from '../../../global/payload/responses/Response';
+import { AccessTokenSecurity, RefreshTokenSecurity } from '../../securities';
+import { SerializeUser } from '../../decorators';
+import { UserDto } from '../../dtos/responses';
+import { RefreshtokenDto, RegisterDto, SigninDto } from '../../dtos/requests';
+import { AuthenticationService } from '../../services/authentication/authentication.service';
+import { UpdateProfileDto } from '../../dtos/requests/authentication/update-profile.dto';
 
 @Controller('auth')
 @ApiTags('auth')

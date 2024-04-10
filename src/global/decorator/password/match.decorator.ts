@@ -13,7 +13,6 @@ export class MatchConstraint implements ValidatorConstraintInterface {
 }
 
 export function Match(property: string, validationOptions?: ValidationOptions) {
-    console.log(validationOptions)
     return (object: any, propertyName: string) => {
         registerDecorator({
             target: object.constructor,

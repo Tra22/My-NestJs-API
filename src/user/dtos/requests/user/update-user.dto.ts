@@ -4,7 +4,7 @@ import {
     IsString,
     IsStrongPassword,
   } from 'class-validator';
-import { Match } from 'src/global/decorator/password/match.decorator';
+import { Match } from '../../../../global/decorator/password/match.decorator';
   
   export class UpdateUserDto {
     @IsString()

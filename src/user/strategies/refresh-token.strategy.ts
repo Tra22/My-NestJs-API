@@ -3,9 +3,9 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { Payload } from 'src/global/config';
 import { User } from '../models';
 import { Repository } from 'typeorm';
+import { Payload } from '../../global/config';
 
 @Injectable()
 export class RefreshTokenStrategy extends PassportStrategy(

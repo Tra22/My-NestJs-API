@@ -3,9 +3,9 @@ import { AutomapperProfile, InjectMapper } from "@automapper/nestjs";
 import { Injectable } from "@nestjs/common";
 import { RoleDto } from "../../dtos/responses/role/role.dto";
 import { Role } from "../../models/role.model";
-import { CreateRoleDto } from "src/user/dtos/requests/role/create-role.dto";
-import { UpdateRoleDto } from "src/user/dtos/requests/role/update-role.dto";
-import { Permission } from "src/user/models/permission.model";
+import { CreateRoleDto } from "../../dtos/requests/role/create-role.dto";
+import { UpdateRoleDto } from "../../dtos/requests/role/update-role.dto";
+import { Permission } from "../../models/permission.model";
 
 @Injectable()
 export class RoleProfile extends AutomapperProfile {

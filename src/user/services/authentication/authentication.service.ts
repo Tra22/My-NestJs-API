@@ -3,13 +3,13 @@ import { InjectMapper } from '@automapper/nestjs';
 import { ForbiddenException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RefreshtokenDto, RegisterDto, SigninDto, UpdateUserDto } from 'src/user/dtos/requests';
-import { UserDto } from 'src/user/dtos/responses';
-import { RefreshToken, User } from 'src/user/models';
 import { QueryFailedError, Repository } from 'typeorm';
 import * as argon from 'argon2';
-import { JwtConfig, Payload, accessTokenConfig, refreshTokenConfig } from 'src/global/config';
-import { UpdateProfileDto } from 'src/user/dtos/requests/authentication/update-profile.dto';
+import { RefreshToken, User } from '../../models';
+import { RefreshtokenDto, RegisterDto, SigninDto } from '../../dtos/requests';
+import { UserDto } from '../../dtos/responses';
+import { JwtConfig, Payload, accessTokenConfig, refreshTokenConfig } from '../../../global/config';
+import { UpdateProfileDto } from '../../dtos/requests/authentication/update-profile.dto';
 
 @Injectable()
 export class AuthenticationService {

@@ -8,10 +8,10 @@ import { Repository } from 'typeorm';
 import { InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
 import { UserDto } from '../../dtos/responses';
-import { CreateUserDto, UpdateUserDto } from 'src/user/dtos/requests';
-import { Response } from 'src/global/payload/responses/Response';
 import * as argon from 'argon2';
 import { IPaginationOptions, Pagination, paginate } from 'nestjs-typeorm-paginate';
+import { Response } from '../../../global/payload/responses/Response';
+import { CreateUserDto, UpdateUserDto } from '../../dtos/requests';
 
 @Injectable()
 export class UserService {
