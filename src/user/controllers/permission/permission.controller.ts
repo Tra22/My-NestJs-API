@@ -31,7 +31,7 @@ import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
     
     @Permissions('permission::read')
     @UseGuards(PermissionGuard)
-    @Get()
+    @Get('page')
     @HttpCode(HttpStatus.OK)
     async getAllPermissionWithPagination(
       @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
