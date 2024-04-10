@@ -20,7 +20,10 @@ import { Response } from 'src/global/payload/responses/Response';
 import { PermissionGuard } from 'src/user/securities/permissions.security';
 import { Permissions } from 'src/user/decorators';
 import { Pagination } from 'nestjs-typeorm-paginate';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
   
+  @ApiBearerAuth()
+  @ApiTags('users')
   @Controller('users')
   export class UserController {
     constructor(private readonly userService: UserService) {}

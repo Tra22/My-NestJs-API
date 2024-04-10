@@ -21,7 +21,10 @@ import { PermissionDto } from 'src/user/dtos/responses/permission/permission.dto
 import { UpdatePermissionDto } from 'src/user/dtos/requests/permission/update-permission.dto';
 import { CreatePermissionDto } from 'src/user/dtos/requests/permission/create-permission.dto';
 import { Pagination } from 'nestjs-typeorm-paginate';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
   
+  @ApiBearerAuth()
+  @ApiTags('permissions')
   @Controller('permissions')
   export class PermissionController {
     constructor(private readonly permissionService: PermissionService) {}

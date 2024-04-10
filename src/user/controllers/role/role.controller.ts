@@ -21,7 +21,10 @@ import { RoleDto } from 'src/user/dtos/responses/role/role.dto';
 import { CreateRoleDto } from 'src/user/dtos/requests/role/create-role.dto';
 import { UpdateRoleDto } from 'src/user/dtos/requests/role/update-role.dto';
 import { Pagination } from 'nestjs-typeorm-paginate';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
   
+  @ApiBearerAuth()
+  @ApiTags('roles')
   @Controller('roles')
   export class RoleController {
     constructor(private readonly roleService: RoleService) {}

@@ -1,4 +1,5 @@
 import { Body, ClassSerializerInterceptor, Controller, Delete, Get, HttpCode, HttpStatus, Patch, Post, Res, UseGuards, UseInterceptors } from '@nestjs/common';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Response } from 'src/global/payload/responses/Response';
 import { SerializeUser } from 'src/user/decorators';
 import { RefreshtokenDto, RegisterDto, SigninDto } from 'src/user/dtos/requests';
@@ -8,9 +9,11 @@ import { AccessTokenSecurity, RefreshTokenSecurity } from 'src/user/securities';
 import { AuthenticationService } from 'src/user/services/authentication/authentication.service';
 
 @Controller('auth')
+@ApiTags('auth')
 export class AuthenticationController {
     constructor(private readonly authenticationService: AuthenticationService) {}
     
+    @ApiBearerAuth()
     @UseGuards(AccessTokenSecurity)
     @Get('user-info')
     getUser(@SerializeUser() user: UserDto): Response<UserDto> {
@@ -32,6 +35,7 @@ export class AuthenticationController {
       return Response.data(await this.authenticationService.signin(dto));
     }
   
+    @ApiBearerAuth()
     @UseGuards(RefreshTokenSecurity)
     @HttpCode(HttpStatus.OK)
     @Post('refresh')
@@ -44,6 +48,7 @@ export class AuthenticationController {
       return Response.data(await this.authenticationService.refreshToken(user, dto));
     }
   
+    @ApiBearerAuth()
     @UseGuards(AccessTokenSecurity)
     @Patch('update-profile')
     async editUser(
@@ -53,6 +58,7 @@ export class AuthenticationController {
       return Response.data(await this.authenticationService.updateUser(userId, dto));
     }
 
+    @ApiBearerAuth()
     @UseGuards(RefreshTokenSecurity)
     @HttpCode(HttpStatus.NO_CONTENT)
     @Delete('signout')
