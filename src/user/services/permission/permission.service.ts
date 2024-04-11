@@ -23,7 +23,6 @@ export class PermissionService {
   
   public async getAllPermissions(): Promise<Response<PermissionDto[]>> {
     const permissions = await this.permissionRepo.find();
-    console.log(permissions);
     return Response.data(await this.classMapper.mapArrayAsync(
       permissions,
       Permission, 
