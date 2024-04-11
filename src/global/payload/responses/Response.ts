@@ -2,7 +2,12 @@ import { Metadata } from "./Metadata";
 
 export class Response<T> {
     constructor(data: T, statusCode: number, metaData: Metadata, details: any = null){
-        this.data = {...data, details: details};
+        console.log(data instanceof Array)
+        if(data instanceof Array){
+            this.data = data;
+        }else {
+            this.data = {...data, details: details};
+        }
         this.statusCode = statusCode;
         this.metadata = metaData;
     }

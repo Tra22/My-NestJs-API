@@ -22,10 +22,13 @@ export class PermissionService {
   ) {}
   
   public async getAllPermissions(): Promise<Response<PermissionDto[]>> {
+    const permissions = await this.permissionRepo.find();
+    console.log(permissions);
     return Response.data(await this.classMapper.mapArrayAsync(
-      await this.permissionRepo.find(), 
+      permissions,
       Permission, 
-      PermissionDto));
+      PermissionDto
+    ));
   }
   public async getAllPermissionsWithPagination(page: number, size: number) : Promise<Pagination<PermissionDto>>{
     const permissionPagination = await paginate<Permission>(this.permissionRepo, {page: page, limit: size} as IPaginationOptions);
