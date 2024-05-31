@@ -1,0 +1,865 @@
+{
+	"info": {
+		"_postman_id": "b314563e-96ee-4bc5-8a44-247b420e03de",
+		"name": "Nest-WebAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13739166",
+		"_collection_link": "https://cloudy-trinity-160689.postman.co/workspace/Team-Workspace~2634a155-b06a-4f39-8db5-b97e8252f1b4/collection/13739166-b314563e-96ee-4bc5-8a44-247b420e03de?action=share&source=collection_link&creator=13739166"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get-Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI2NTAzMTAsImV4cCI6MTcxMjY1MDkxMH0.S18b2DdvXSSkX9gWNP4Mu-JnYuH9cBLc7ByrVZbe8Ek",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/users",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Users Pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI2NTI2MzQsImV4cCI6MTcxMjY1MzIzNH0.ZMzKLC57ssbl9uS5fMVN2hC_lBR8QRZUIeATI1WddSc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/users/page?page=1&size=10",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post-Create-User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI4MjE0NzUsImV4cCI6MTcxMjgyMjA3NX0.M8nfNBZPp1D3xmA7wFcdA5qpsuQ3sfUK7Y7MXgr6SNg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"firstName\": \"test\",\r\n            \"lastName\": \"9\",\r\n            \"email\": \"test.9@gmail.com\",\r\n            \"password\": \"password\",\r\n            \"confirmPassword\": \"password\",\r\n            \"roles\": [\"1c3f395e-f571-45d2-981e-f005597bc1b8\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/users",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch-Update-User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI2NTA2MDYsImV4cCI6MTcxMjY1MTIwNn0.8p_j0ThEMb36AJIg9goDJpcWySIUbunj3uMBsq7qI_I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n            \"firstName\": \"test\",\r\n            \"lastName\": \"9\",\r\n            \"email\": \"test.9@gmail.com\",\r\n            \"roles\": [\"1c3f395e-f571-45d2-981e-f005597bc1b8\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/users/32dcc1c1-7db0-442b-8968-b24b4d00d598",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"32dcc1c1-7db0-442b-8968-b24b4d00d598"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-User By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZjE1MzZhZC1mODQ2LTRmYzgtODdjNy05MDU5ZjhiOWI0ZmQiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI1NzAyMTUsImV4cCI6MTcxMjU3MDgxNX0.j4I8NpNXWJ5gjp6U37kG1DAd81SZQuLriwhyAL4T2Gg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/users/7f1536ad-f846-4fc8-87c7-9059f8b9b4fd",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"7f1536ad-f846-4fc8-87c7-9059f8b9b4fd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-User By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZjE1MzZhZC1mODQ2LTRmYzgtODdjNy05MDU5ZjhiOWI0ZmQiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI1NzAyMTUsImV4cCI6MTcxMjU3MDgxNX0.j4I8NpNXWJ5gjp6U37kG1DAd81SZQuLriwhyAL4T2Gg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/users/7f1536ad-f846-4fc8-87c7-9059f8b9b4fd",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"users",
+								"7f1536ad-f846-4fc8-87c7-9059f8b9b4fd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Role",
+			"item": [
+				{
+					"name": "Get-Roles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI2NTI4NTgsImV4cCI6MTcxMjY1MzQ1OH0.7Z46QYAr-TZ9oHr8Axx6zKNMkkAA95yoD5rQ-wZ2_EA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/roles",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Roles Pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI4MDEzNjEsImV4cCI6MTcxMjgwMTk2MX0.9TNBXnCAXz7FXGCxUUFXhD2auqHEfd_Xzv7xtGgLPaw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/roles/page?page=1&size=10",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles",
+								"page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post-Create-Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI2NDM5NjksImV4cCI6MTcxMjY0NDU2OX0.6BRno23q4N_GCjCKwnnqQdVwbBNNMk7av6C5qIU7_Xw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/roles",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch-Update-Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI2NDM5NjksImV4cCI6MTcxMjY0NDU2OX0.6BRno23q4N_GCjCKwnnqQdVwbBNNMk7av6C5qIU7_Xw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"admin\",\r\n    \"description\":\"admin\",\r\n    \"permissions\": [\r\n        \"4e1c25a0-5017-4153-824a-f9c46f25e752\",\r\n        \"94c1d9a1-a56a-4f00-8315-841982f0e16c\",\r\n        \"52ee375c-9682-4ae6-a46d-4bb691b8cf80\",\r\n        \"51f32628-b7a3-41d8-b131-f4c19d45493a\",\r\n        \"db6d9625-d412-44ed-bab9-0005ffeb4359\",\r\n        \"be6c3c5a-e760-4744-b743-89dcbc4debd2\",\r\n        \"66e3ef4f-37b5-4dfd-a495-43eca8f1cd6a\",\r\n        \"f31b9302-828c-4025-9135-8f3c2d708f98\",\r\n        \"a9d27063-50f5-4325-b0c3-a913703da69a\",\r\n        \"6850c56b-1a3e-448b-bdc6-5c1b78b76732\",\r\n        \"d056a9af-9608-4fdf-94c4-82d0dc09006b\",\r\n        \"d22e6fe2-a8c3-4b21-bf6b-3ea618a56039\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/roles/1c3f395e-f571-45d2-981e-f005597bc1b8",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles",
+								"1c3f395e-f571-45d2-981e-f005597bc1b8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Role By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZjE1MzZhZC1mODQ2LTRmYzgtODdjNy05MDU5ZjhiOWI0ZmQiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI1NzAyMTUsImV4cCI6MTcxMjU3MDgxNX0.j4I8NpNXWJ5gjp6U37kG1DAd81SZQuLriwhyAL4T2Gg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/roles/7f1536ad-f846-4fc8-87c7-9059f8b9b4fd",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles",
+								"7f1536ad-f846-4fc8-87c7-9059f8b9b4fd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-Role By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZjE1MzZhZC1mODQ2LTRmYzgtODdjNy05MDU5ZjhiOWI0ZmQiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI1NzAyMTUsImV4cCI6MTcxMjU3MDgxNX0.j4I8NpNXWJ5gjp6U37kG1DAd81SZQuLriwhyAL4T2Gg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/roles/7f1536ad-f846-4fc8-87c7-9059f8b9b4fd",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"roles",
+								"7f1536ad-f846-4fc8-87c7-9059f8b9b4fd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permission",
+			"item": [
+				{
+					"name": "Get-Permissions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI4MDA3MjIsImV4cCI6MTcxMjgwMTMyMn0.o4RQ7DjDyKY-E2vF_9mM6ql3FYUe_BjB130rY6tJDvo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/permissions",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Permissions Pagination",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI4MDA3MjIsImV4cCI6MTcxMjgwMTMyMn0.o4RQ7DjDyKY-E2vF_9mM6ql3FYUe_BjB130rY6tJDvo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/permissions/page?page=1&size=20",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"permissions",
+								"page"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "size",
+									"value": "20"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post-Create-Permission",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI2NDM5NjksImV4cCI6MTcxMjY0NDU2OX0.6BRno23q4N_GCjCKwnnqQdVwbBNNMk7av6C5qIU7_Xw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"permission::delete\",\r\n    \"description\": \"permission delete permission\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/permissions",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"permissions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch-Update-Permission",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI2NDM5NjksImV4cCI6MTcxMjY0NDU2OX0.6BRno23q4N_GCjCKwnnqQdVwbBNNMk7av6C5qIU7_Xw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"role::write\",\r\n    \"description\": \"role write permission\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/permissions/66e3ef4f-37b5-4dfd-a495-43eca8f1cd6a",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"permissions",
+								"66e3ef4f-37b5-4dfd-a495-43eca8f1cd6a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Permission By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZjE1MzZhZC1mODQ2LTRmYzgtODdjNy05MDU5ZjhiOWI0ZmQiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI1NzAyMTUsImV4cCI6MTcxMjU3MDgxNX0.j4I8NpNXWJ5gjp6U37kG1DAd81SZQuLriwhyAL4T2Gg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/permissions/be6c3c5a-e760-4744-b743-89dcbc4debd2",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"permissions",
+								"be6c3c5a-e760-4744-b743-89dcbc4debd2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-Permission By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3ZjE1MzZhZC1mODQ2LTRmYzgtODdjNy05MDU5ZjhiOWI0ZmQiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI1NzAyMTUsImV4cCI6MTcxMjU3MDgxNX0.j4I8NpNXWJ5gjp6U37kG1DAd81SZQuLriwhyAL4T2Gg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/permissions/7f1536ad-f846-4fc8-87c7-9059f8b9b4fd",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"permissions",
+								"7f1536ad-f846-4fc8-87c7-9059f8b9b4fd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Update User Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4YjkyZDZlZC0xYzk3LTQ4NjItODRkOS0xZjlhODNhZWM4YWEiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTIzMDQzNDEsImV4cCI6MTcxMjMwNDk0MX0.tdGQdWuiixhiaOCxiX8m2PyWaQ4b9323_vP3K7rT9VI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"99999\",\r\n    \"email\": \"test.9@gmail.com\",\r\n    \"password\": \"Test@1234\",\r\n    \"confirmPassword\": \"Test@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/auth/update-profile",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"update-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzMmRjYzFjMS03ZGIwLTQ0MmItODk2OC1iMjRiNGQwMGQ1OTgiLCJlbWFpbCI6InRlc3QuOUBnbWFpbC5jb20iLCJpYXQiOjE3MTI2NDUxMTMsImV4cCI6MTcxMjY0NTcxM30.D_WuZ1MZWjrCPvaLRwreekBc9Dh89UWAljf7pW3NeIg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxZjAzZDc0Mi0xNWE1LTQwNjMtYWE5MS04YjFhMDQyMjczYjEiLCJlbWFpbCI6InRlc3QuMUBnbWFpbC5jb20iLCJpYXQiOjE3MTIyOTk5OTIsImV4cCI6MTcxMjMwMDU5Mn0.rxd8YfTchfMJE4OPElo_NlNiE6Sci33S4KQcoRnJgMQ",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{base-url}}/auth/user-info",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"user-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SignIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test.9@gmail.com\",\r\n    \"password\": \"Test@1234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/auth/signin",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"lastName\": \"\",\r\n    \"email\": \"test.9@gmail.com\",\r\n    \"password\": \"Test@1234\",\r\n    \"confirmPassword\": \"Test@12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url}}/auth/register",
+							"host": [
+								"{{base-url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
