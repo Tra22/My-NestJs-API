@@ -9,11 +9,16 @@ import { classes } from '@automapper/classes';
 import { Role } from './user/models/role.model';
 import { Permission } from './user/models/permission.model';
 import { UniqueExistConstraint } from './user/decorators/unique.validation.decorator';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
+    }),
     AutomapperModule.forRoot({
-      strategyInitializer: classes()
+      strategyInitializer: classes(),
     }),
     ConfigModule.forRoot({
       isGlobal: true,
@@ -31,10 +36,10 @@ import { UniqueExistConstraint } from './user/decorators/unique.validation.decor
         database: config.get('POSTGRES_DATABASE'),
         entities: [User, Role, Permission, RefreshToken],
         synchronize: true,
-        ssl: true //if no ssl no need to use it.
+        ssl: true, //if no ssl no need to use it.
       }),
     }),
-    UserModule
+    UserModule,
   ],
   controllers: [],
   providers: [UniqueExistConstraint],

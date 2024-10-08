@@ -5,17 +5,21 @@ import { AllExceptionsFilter } from './global/exception/all.exception.filter';
 import { useContainer } from 'class-validator';
 import { validationExceptionFactory } from './global/exception/validation.exception';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { join } from 'path';
+import { writeFileSync } from 'fs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useGlobalPipes(new ValidationPipe({ 
-    whitelist: true,
-    exceptionFactory: validationExceptionFactory,
-   }));
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      exceptionFactory: validationExceptionFactory,
+    }),
+  );
 
-  const  httpAdapterHost  = app.get(HttpAdapterHost);
+  const httpAdapterHost = app.get(HttpAdapterHost);
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost));
-  
+
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
   //swagger config
@@ -27,18 +31,24 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document, {
-      customSiteTitle: 'Your API Documentation',
-      customJs: [
-          'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
-          'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
-      ],
-      customCssUrl: [
-          'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
-          'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
-      ],
-  })
 
+  const swaggerJsonPath = join(__dirname, '..', 'public', 'swagger.json');
+  writeFileSync(swaggerJsonPath, JSON.stringify(document, null, 2));
+
+  SwaggerModule.setup('api', app, document, {
+    customSiteTitle: 'Your API Documentation',
+    customJs: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
+    ],
+    customCssUrl: [
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
+      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
+    ],
+    swaggerOptions: {
+      url: '/swagger.json', // Ensure this points to the correct static file
+    },
+  });
   await app.listen(3000);
 }
 bootstrap();
