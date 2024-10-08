@@ -85,6 +85,27 @@ export class RoleService {
       ),
     );
   }
+  public async createSuperAdminRoleIfNotExist() {
+    const superAdminRole = await this.roleRepo.findOne({
+      where: { name: 'super-admin' },
+    });
+
+    if (!superAdminRole) {
+      const createRoleDto = new CreateRoleDto();
+      createRoleDto.name = 'super-admin';
+      createRoleDto.description = 'Super admin role';
+      createRoleDto.permissions = [];
+      return Response.data(
+        await this.classMapper.mapAsync(
+          await this.roleRepo.save(
+            this.classMapper.map(createRoleDto, CreateRoleDto, Role),
+          ),
+          Role,
+          RoleDto,
+        ),
+      );
+    }
+  }
 
   public async updateRoleById(
     roleId: string,

@@ -43,8 +43,10 @@ export class PermissionGuard implements CanActivate {
         )
         .where('user.id = :userId', { userId: payload?.sub })
         .getOne();
-      const roles =
-        this.reflector.get<string[]>('roles', context.getHandler()) || [];
+      const roles = [
+        'role_super-admin',
+        ...(this.reflector.get<string[]>('roles', context.getHandler()) || []),
+      ];
       const permissions =
         this.reflector.get<string[]>('permissions', context.getHandler()) || [];
       // 💡 We're assigning the payload to the request object here

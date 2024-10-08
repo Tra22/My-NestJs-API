@@ -8,9 +8,12 @@ import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 import { join } from 'path';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { RoleService } from './user/services/role/role.service';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const rolesService = app.get(RoleService);
+  await rolesService.createSuperAdminRoleIfNotExist();
 
   app.useStaticAssets(join(__dirname, '..', 'public'), {
     prefix: '/',
