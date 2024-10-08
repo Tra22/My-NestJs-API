@@ -64,7 +64,12 @@ async function bootstrap() {
     customCssUrl: [
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
     ],
+    swaggerUrl:
+      process.env.NODE_ENV !== 'production'
+        ? 'https://localhost:3000/swagger.json'
+        : 'https://my-nest-js-api.vercel.app/swagger.json',
     jsonDocumentUrl: '/swagger.json',
+    urls: [{ url: '/swagger.json', name: 'v1' }],
   });
   app.enableCors({
     origin: '*', // Allow all origins for testing
