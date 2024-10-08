@@ -106,7 +106,6 @@ async function bootstrap() {
           required: ['id', 'name'],
         };
       }
-      console.log(swaggerJson);
       return swaggerJson;
     },
   });
