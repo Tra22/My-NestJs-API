@@ -56,20 +56,21 @@ async function bootstrap() {
   }
 
   // Serve Swagger UI
-  SwaggerModule.setup('api', app, document, {
-    customSiteTitle: 'Your API Documentation',
-    customJs: [
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
-    ],
-    customCssUrl: [
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
-    ],
-    jsonDocumentUrl:
-      process.env.NODE_ENV !== 'production'
-        ? 'https://my-nest-js-api.vercel.app/swagger.json'
-        : 'http://localhost:3000/swagger.json',
-  });
+  SwaggerModule.setup('api', app, document);
+  // , {
+  //   customSiteTitle: 'Your API Documentation',
+  //   customJs: [
+  //     'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-bundle.min.js',
+  //     'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
+  //   ],
+  //   customCssUrl: [
+  //     'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
+  //   ],
+  //   jsonDocumentUrl:
+  //     process.env.NODE_ENV !== 'production'
+  //       ? 'https://my-nest-js-api.vercel.app/swagger.json'
+  //       : 'http://localhost:3000/swagger.json',
+  // });
   app.enableCors({
     origin: '*', // Allow all origins for testing
   });
