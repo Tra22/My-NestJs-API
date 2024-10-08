@@ -64,9 +64,11 @@ async function bootstrap() {
     ],
     customCssUrl: [
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
-      'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
     ],
-    jsonDocumentUrl: '/swagger.json', // Swagger will now fetch from this path
+    jsonDocumentUrl:
+      process.env.NODE_ENV !== 'production'
+        ? 'https://my-nest-js-api.vercel.app/swagger.json'
+        : 'http://localhost:3000/swagger.json',
   });
   app.enableCors({
     origin: '*', // Allow all origins for testing
