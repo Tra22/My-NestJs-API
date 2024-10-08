@@ -61,9 +61,7 @@ async function bootstrap() {
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
     ],
-    swaggerOptions: {
-      url: '/swagger.json',
-    },
+    jsonDocumentUrl: '/swagger.json',
   });
 
   await app.listen(3000);
