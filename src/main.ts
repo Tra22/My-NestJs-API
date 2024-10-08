@@ -6,7 +6,7 @@ import { useContainer } from 'class-validator';
 import { validationExceptionFactory } from './global/exception/validation.exception';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { join } from 'path';
-import { writeFileSync } from 'fs';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -31,8 +31,13 @@ async function bootstrap() {
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
+  const publicPath = join(__dirname, '..', 'public');
+  if (!existsSync(publicPath)) {
+    mkdirSync(publicPath);
+  }
 
-  const swaggerJsonPath = join(__dirname, '..', 'public', 'swagger.json');
+  // Write the swagger.json during the build process (at build time)
+  const swaggerJsonPath = join(publicPath, 'swagger.json');
   writeFileSync(swaggerJsonPath, JSON.stringify(document, null, 2));
 
   SwaggerModule.setup('api', app, document, {
