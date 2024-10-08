@@ -5,8 +5,6 @@ import { AllExceptionsFilter } from './global/exception/all.exception.filter';
 import { useContainer } from 'class-validator';
 import { validationExceptionFactory } from './global/exception/validation.exception';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { join } from 'path';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -37,19 +35,19 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
 
-  // Define the path to the public folder for storing swagger.json
-  const publicPath = join(__dirname, '..', 'public');
+  // // Define the path to the public folder for storing swagger.json
+  // const publicPath = join(__dirname, '..', 'public');
 
-  // Ensure the 'public' folder exists before attempting to write
-  if (!existsSync(publicPath)) {
-    mkdirSync(publicPath, { recursive: true });
-  }
+  // // Ensure the 'public' folder exists before attempting to write
+  // if (!existsSync(publicPath)) {
+  //   mkdirSync(publicPath, { recursive: true });
+  // }
 
-  // File path to save the swagger.json
-  const swaggerJsonPath = join(publicPath, 'swagger.json');
+  // // File path to save the swagger.json
+  // const swaggerJsonPath = join(publicPath, 'swagger.json');
 
-  // Only write swagger.json if the file does not exist or to ensure it is always up to date.
-  writeFileSync(swaggerJsonPath, JSON.stringify(document, null, 2));
+  // // Only write swagger.json if the file does not exist or to ensure it is always up to date.
+  // writeFileSync(swaggerJsonPath, JSON.stringify(document, null, 2));
 
   // Set up Swagger UI for viewing API documentation
   SwaggerModule.setup('api', app, document, {
