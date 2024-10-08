@@ -24,9 +24,15 @@ export class AccessTokenStrategy extends PassportStrategy(
   }
 
   async validate(payload: Payload) {
-    return await  this.userRepo.createQueryBuilder('user')
-      .leftJoinAndSelect("user.roles", "roles", "roles.isActive = true")
-      .leftJoinAndSelect('roles.permissions', 'permissions', 'permissions.isActive = true')
-      .where('user.id = :userId', { userId: payload?.sub }).getOne();
+    return await this.userRepo
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.roles', 'roles', 'roles.isActive = true')
+      .leftJoinAndSelect(
+        'roles.permissions',
+        'permissions',
+        'permissions.isActive = true',
+      )
+      .where('user.id = :userId', { userId: payload?.sub })
+      .getOne();
   }
 }

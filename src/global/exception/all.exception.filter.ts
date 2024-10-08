@@ -25,20 +25,34 @@ export class AllExceptionsFilter implements ExceptionFilter {
       exception instanceof HttpException
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR;
-    const errorMessage = exception instanceof HttpException ? exception?.message : "Unexpected Error!";
-    if(exception instanceof ValidationException){
-      const details = exception instanceof ValidationException ? exception.getResponse(): null;
+    const errorMessage =
+      exception instanceof HttpException
+        ? exception?.message
+        : 'Unexpected Error!';
+    if (exception instanceof ValidationException) {
+      const details =
+        exception instanceof ValidationException
+          ? exception.getResponse()
+          : null;
       const responseBody = {
         path: httpAdapter.getRequestUrl(ctx.getRequest()),
-        message: exception.message
+        message: exception.message,
       };
-      httpAdapter.reply(ctx.getResponse(), Response.error(httpStatus, responseBody, details), httpStatus);
-    }else{
+      httpAdapter.reply(
+        ctx.getResponse(),
+        Response.error(httpStatus, responseBody, details),
+        httpStatus,
+      );
+    } else {
       const responseBody = {
         path: httpAdapter.getRequestUrl(ctx.getRequest()),
-        message: errorMessage
+        message: errorMessage,
       };
-      httpAdapter.reply(ctx.getResponse(), Response.error(httpStatus, responseBody), httpStatus);
+      httpAdapter.reply(
+        ctx.getResponse(),
+        Response.error(httpStatus, responseBody),
+        httpStatus,
+      );
     }
   }
 }

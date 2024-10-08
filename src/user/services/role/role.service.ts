@@ -1,12 +1,13 @@
-import {
-    Injectable,
-    NotFoundException,
-  } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { InjectMapper } from '@automapper/nestjs';
 import { Mapper } from '@automapper/core';
-import { IPaginationOptions, Pagination, paginate } from 'nestjs-typeorm-paginate';
+import {
+  IPaginationOptions,
+  Pagination,
+  paginate,
+} from 'nestjs-typeorm-paginate';
 import { Role } from '../../models/role.model';
 import { Response } from '../../../global/payload/responses/Response';
 import { RoleDto } from '../../dtos/responses/role/role.dto';
@@ -17,66 +18,105 @@ export class RoleService {
   constructor(
     @InjectRepository(Role)
     private readonly roleRepo: Repository<Role>,
-    @InjectMapper() 
+    @InjectMapper()
     private readonly classMapper: Mapper,
   ) {}
-  
+
   public async getAllRoles(): Promise<Response<RoleDto[]>> {
-    return Response.data(await this.classMapper.mapArrayAsync(
-      await this.roleRepo.createQueryBuilder('role')
-          .leftJoinAndSelect('role.permissions', 'permissions', 'permissions.isActive = true')
-          .getMany(), 
-      Role, 
-      RoleDto));
+    return Response.data(
+      await this.classMapper.mapArrayAsync(
+        await this.roleRepo
+          .createQueryBuilder('role')
+          .leftJoinAndSelect(
+            'role.permissions',
+            'permissions',
+            'permissions.isActive = true',
+          )
+          .getMany(),
+        Role,
+        RoleDto,
+      ),
+    );
   }
 
-  public async getAllRolesWithPagination(page: number, size: number) : Promise<Pagination<RoleDto>>{
-    const permissionPagination = await paginate<Role>(this.roleRepo, {page: page, limit: size} as IPaginationOptions);
+  public async getAllRolesWithPagination(
+    page: number,
+    size: number,
+  ): Promise<Pagination<RoleDto>> {
+    const permissionPagination = await paginate<Role>(this.roleRepo, {
+      page: page,
+      limit: size,
+    } as IPaginationOptions);
     return new Pagination<RoleDto>(
-      await this.classMapper.mapArrayAsync(permissionPagination.items, Role, RoleDto),
+      await this.classMapper.mapArrayAsync(
+        permissionPagination.items,
+        Role,
+        RoleDto,
+      ),
       permissionPagination.meta,
       permissionPagination.links,
     );
-  } 
+  }
 
-  public async getRoleById(roleId: string): Promise<Response<RoleDto>>{
-    const role = await this.roleRepo.createQueryBuilder('role')
-        .leftJoinAndSelect('role.permissions', 'permissions', 'permissions.isActive = true')
-        .where('role.id = :roleId', { roleId })
-        .getOne();
-    if(!role) throw new NotFoundException("Role not found!");
+  public async getRoleById(roleId: string): Promise<Response<RoleDto>> {
+    const role = await this.roleRepo
+      .createQueryBuilder('role')
+      .leftJoinAndSelect(
+        'role.permissions',
+        'permissions',
+        'permissions.isActive = true',
+      )
+      .where('role.id = :roleId', { roleId })
+      .getOne();
+    if (!role) throw new NotFoundException('Role not found!');
     return Response.data(this.classMapper.map(role, Role, RoleDto));
   }
 
-  public async createRole(createRoleDto: CreateRoleDto) : Promise<Response<RoleDto>>{
+  public async createRole(
+    createRoleDto: CreateRoleDto,
+  ): Promise<Response<RoleDto>> {
     return Response.data(
       await this.classMapper.mapAsync(
         await this.roleRepo.save(
-            this.classMapper.map(createRoleDto, CreateRoleDto, Role)
+          this.classMapper.map(createRoleDto, CreateRoleDto, Role),
         ),
-        Role, 
-        RoleDto
-      )
+        Role,
+        RoleDto,
+      ),
     );
   }
 
-  public async updateRoleById(roleId: string, updateRoleDto: UpdateRoleDto) : Promise<Response<RoleDto>> {
-    const role =  await this.roleRepo.createQueryBuilder('role')
-    .leftJoinAndSelect('role.permissions', 'permissions', 'permissions.isActive = true')
-    .where('role.id = :roleId', { roleId })
-    .getOne();
-    if(!role) throw new NotFoundException("Role not found!");
-    const updateModel = this.classMapper.map(updateRoleDto, UpdateRoleDto, Role);
-    return Response.data(await this.classMapper.mapAsync(
-      await this.roleRepo.save({id: roleId, ...updateModel}),
-      Role, 
-      RoleDto
-    ));
+  public async updateRoleById(
+    roleId: string,
+    updateRoleDto: UpdateRoleDto,
+  ): Promise<Response<RoleDto>> {
+    const role = await this.roleRepo
+      .createQueryBuilder('role')
+      .leftJoinAndSelect(
+        'role.permissions',
+        'permissions',
+        'permissions.isActive = true',
+      )
+      .where('role.id = :roleId', { roleId })
+      .getOne();
+    if (!role) throw new NotFoundException('Role not found!');
+    const updateModel = this.classMapper.map(
+      updateRoleDto,
+      UpdateRoleDto,
+      Role,
+    );
+    return Response.data(
+      await this.classMapper.mapAsync(
+        await this.roleRepo.save({ id: roleId, ...updateModel }),
+        Role,
+        RoleDto,
+      ),
+    );
   }
 
-  public async deleteRoleById(roleId: string): Promise<void>{
-    const role = await this.roleRepo.findOne({where: {id: roleId}});
-    if(!role) throw new NotFoundException("Role not found!");
+  public async deleteRoleById(roleId: string): Promise<void> {
+    const role = await this.roleRepo.findOne({ where: { id: roleId } });
+    if (!role) throw new NotFoundException('Role not found!');
     this.roleRepo.remove(role);
   }
 }

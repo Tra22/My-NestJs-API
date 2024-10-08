@@ -10,7 +10,7 @@ import {
 } from 'typeorm';
 import { Role } from './role.model';
 
-@Entity({name: "nestjs_permissions"})
+@Entity({ name: 'nestjs_permissions' })
 export class Permission {
   @AutoMap()
   @PrimaryGeneratedColumn('uuid')
@@ -23,7 +23,7 @@ export class Permission {
   @AutoMap()
   @Column()
   description: string;
-  
+
   @AutoMap()
   @Column({ default: true })
   isActive: boolean;

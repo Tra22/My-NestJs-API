@@ -1,4 +1,4 @@
-import { AutoMap } from "@automapper/classes";
+import { AutoMap } from '@automapper/classes';
 
 export class PermissionDto {
   @AutoMap()
@@ -6,7 +6,7 @@ export class PermissionDto {
 
   @AutoMap()
   name: string;
-  
+
   @AutoMap()
   description: string;
 
@@ -18,5 +18,4 @@ export class PermissionDto {
 
   @AutoMap()
   updatedAt: Date;
-
 }

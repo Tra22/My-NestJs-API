@@ -1,5 +1,5 @@
-import { AutoMap } from "@automapper/classes";
-import { RoleDto } from "../role/role.dto";
+import { AutoMap } from '@automapper/classes';
+import { RoleDto } from '../role/role.dto';
 
 export class UserDto {
   @AutoMap()
@@ -7,7 +7,7 @@ export class UserDto {
 
   @AutoMap()
   firstName: string;
-  
+
   @AutoMap()
   lastName: string;
 

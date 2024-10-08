@@ -1,5 +1,5 @@
-import { AutoMap } from "@automapper/classes";
-import { PermissionDto } from "../permission/permission.dto";
+import { AutoMap } from '@automapper/classes';
+import { PermissionDto } from '../permission/permission.dto';
 
 export class RoleDto {
   @AutoMap()
@@ -7,7 +7,7 @@ export class RoleDto {
 
   @AutoMap()
   name: string;
-  
+
   @AutoMap()
   description: string;
   @AutoMap()

@@ -12,7 +12,7 @@ import {
 import { Role } from './role.model';
 import { RoleDto } from '../dtos/responses/role/role.dto';
 
-@Entity({name: "nestjs_users"})
+@Entity({ name: 'nestjs_users' })
 export class User {
   @AutoMap()
   @PrimaryGeneratedColumn('uuid')
@@ -46,7 +46,7 @@ export class User {
   updatedAt: Date;
 
   @AutoMap(() => RoleDto)
-  @ManyToMany(() => Role, (role) => role.users,{
+  @ManyToMany(() => Role, (role) => role.users, {
     cascade: true,
   })
   @JoinTable()

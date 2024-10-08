@@ -24,10 +24,25 @@ import { PermissionController } from './controllers/permission/permission.contro
     TypeOrmModule.forFeature([User, Role, Permission, RefreshToken]),
     JwtModule.register({}),
     PassportModule.register({
-      session: false
-    })
+      session: false,
+    }),
   ],
-  providers: [UserService, AuthenticationService, PermissionProfile, RoleProfile, UserProfile, AccessTokenStrategy, RefreshTokenStrategy, RoleService, PermissionService],
-  controllers: [UserController, AuthenticationController, RoleController, PermissionController]
+  providers: [
+    UserService,
+    AuthenticationService,
+    PermissionProfile,
+    RoleProfile,
+    UserProfile,
+    AccessTokenStrategy,
+    RefreshTokenStrategy,
+    RoleService,
+    PermissionService,
+  ],
+  controllers: [
+    UserController,
+    AuthenticationController,
+    RoleController,
+    PermissionController,
+  ],
 })
 export class UserModule {}

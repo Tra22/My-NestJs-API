@@ -12,7 +12,7 @@ import { Permission } from './permission.model';
 import { User } from './user.model';
 import { PermissionDto } from '../dtos/responses/permission/permission.dto';
 
-@Entity({name: "nestjs_roles"})
+@Entity({ name: 'nestjs_roles' })
 export class Role {
   @AutoMap()
   @PrimaryGeneratedColumn('uuid')
@@ -25,7 +25,7 @@ export class Role {
   @AutoMap()
   @Column()
   description: string;
-  
+
   @AutoMap()
   @Column({ default: true })
   isActive: boolean;
@@ -43,7 +43,7 @@ export class Role {
   users: User[];
 
   @AutoMap(() => PermissionDto)
-  @ManyToMany(() => Permission, (permission) => permission.roles,{
+  @ManyToMany(() => Permission, (permission) => permission.roles, {
     cascade: true,
   })
   @JoinTable()

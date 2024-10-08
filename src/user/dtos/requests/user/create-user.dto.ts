@@ -1,13 +1,13 @@
 import { AutoMap } from '@automapper/classes';
 import {
-    IsEmail,
-    IsNotEmpty,
-    IsOptional,
-    IsString,
-    IsStrongPassword,
-  } from 'class-validator';
+  IsEmail,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsStrongPassword,
+} from 'class-validator';
 import { Match } from '../../../../global/decorator/password/match.decorator';
-  
+
 export class CreateUserDto {
   @AutoMap()
   @IsString()
