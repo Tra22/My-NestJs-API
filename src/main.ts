@@ -68,7 +68,10 @@ async function bootstrap() {
     ],
     jsonDocumentUrl: '/swagger.json', // Swagger will now fetch from this path
   });
-  app.enableCors();
+  app.enableCors({
+    origin: '*', // Allow all origins for testing
+  });
+
   await app.listen(3000);
 }
 
