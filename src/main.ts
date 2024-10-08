@@ -11,7 +11,12 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.useStaticAssets(join(__dirname, '..', 'public'));
+
+  // Serve static assets from the root URL
+  app.useStaticAssets(join(__dirname, '..', 'public'), {
+    prefix: '/', // Ensures static assets are available from root
+  });
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -61,7 +66,7 @@ async function bootstrap() {
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
     ],
-    jsonDocumentUrl: '/swagger.json',
+    jsonDocumentUrl: '/swagger.json', // Swagger will now fetch from this path
   });
 
   await app.listen(3000);
