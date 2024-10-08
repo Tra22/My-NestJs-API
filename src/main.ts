@@ -5,11 +5,12 @@ import { AllExceptionsFilter } from './global/exception/all.exception.filter';
 import { useContainer } from 'class-validator';
 import { validationExceptionFactory } from './global/exception/validation.exception';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { join } from 'path';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Apply global pipes for validation
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -17,14 +18,12 @@ async function bootstrap() {
     }),
   );
 
-  // Global exception filter
   const httpAdapterHost = app.get(HttpAdapterHost);
   app.useGlobalFilters(new AllExceptionsFilter(httpAdapterHost));
 
-  // Enable class-validator to use Nest container
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  // Swagger setup
+  // Swagger config
   const config = new DocumentBuilder()
     .setTitle('My Nest Js API')
     .setDescription('The Nest JS API description')
@@ -35,21 +34,22 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
 
-  // // Define the path to the public folder for storing swagger.json
-  // const publicPath = join(__dirname, '..', 'public');
+  // If the environment is not Vercel or production, generate the Swagger file
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    process.env.VERCEL === undefined
+  ) {
+    const publicPath = join(__dirname, '..', 'public');
+    if (!existsSync(publicPath)) {
+      mkdirSync(publicPath);
+    }
 
-  // // Ensure the 'public' folder exists before attempting to write
-  // if (!existsSync(publicPath)) {
-  //   mkdirSync(publicPath, { recursive: true });
-  // }
+    // Write the swagger.json to the public folder (which will be static)
+    const swaggerJsonPath = join(publicPath, 'swagger.json');
+    writeFileSync(swaggerJsonPath, JSON.stringify(document, null, 2));
+  }
 
-  // // File path to save the swagger.json
-  // const swaggerJsonPath = join(publicPath, 'swagger.json');
-
-  // // Only write swagger.json if the file does not exist or to ensure it is always up to date.
-  // writeFileSync(swaggerJsonPath, JSON.stringify(document, null, 2));
-
-  // Set up Swagger UI for viewing API documentation
+  // Serve Swagger UI
   SwaggerModule.setup('api', app, document, {
     customSiteTitle: 'Your API Documentation',
     customJs: [
@@ -61,11 +61,10 @@ async function bootstrap() {
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.css',
     ],
     swaggerOptions: {
-      url: '/swagger.json', // This points to the swagger.json file in the public folder
+      url: '/swagger.json',
     },
   });
 
-  // Start the application on port 3000
   await app.listen(3000);
 }
 
