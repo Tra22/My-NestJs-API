@@ -4,17 +4,16 @@ import { ValidationPipe } from '@nestjs/common';
 import { AllExceptionsFilter } from './global/exception/all.exception.filter';
 import { useContainer } from 'class-validator';
 import { validationExceptionFactory } from './global/exception/validation.exception';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 import { join } from 'path';
-import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { NestExpressApplication } from '@nestjs/platform-express';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // Serve static assets from the root URL
   app.useStaticAssets(join(__dirname, '..', 'public'), {
-    prefix: '/', // Ensures static assets are available from root
+    prefix: '/',
   });
 
   app.useGlobalPipes(
@@ -29,7 +28,6 @@ async function bootstrap() {
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  // Swagger config
   const config = new DocumentBuilder()
     .setTitle('My Nest Js API')
     .setDescription('The Nest JS API description')
@@ -40,21 +38,20 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
 
-  // If the environment is not Vercel or production, generate the Swagger file
-  if (
-    process.env.NODE_ENV !== 'production' &&
-    process.env.VERCEL === undefined
-  ) {
+  // Check if we're in production or Vercel environment
+  const isProduction = process.env.NODE_ENV === 'production';
+  const isVercel = process.env.VERCEL !== undefined;
+
+  if (!isProduction && !isVercel) {
     const publicPath = join(__dirname, '..', 'public');
     if (!existsSync(publicPath)) {
       mkdirSync(publicPath);
     }
 
-    // Write the swagger.json to the public folder (which will be static)
     const swaggerJsonPath = join(publicPath, 'swagger.json');
     writeFileSync(swaggerJsonPath, JSON.stringify(document, null, 2));
   }
-  // Serve Swagger UI
+
   SwaggerModule.setup('api', app, document, {
     customSiteTitle: 'Your API Documentation',
     customJs: [
@@ -64,15 +61,58 @@ async function bootstrap() {
     customCssUrl: [
       'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui.min.css',
     ],
-    swaggerUrl:
-      process.env.NODE_ENV !== 'production'
-        ? 'https://localhost:3000/swagger.json'
-        : 'https://my-nest-js-api.vercel.app/swagger.json',
+    swaggerUrl: isProduction
+      ? 'https://my-nest-js-api.vercel.app/swagger.json'
+      : 'https://localhost:3000/swagger.json',
     jsonDocumentUrl: '/swagger.json',
     urls: [{ url: '/swagger.json', name: 'v1' }],
+    patchDocumentOnRequest: (req, res, document) => {
+      let swaggerJson: OpenAPIObject;
+
+      try {
+        const jsonFilePath = join(__dirname, '..', 'public', 'swagger.json');
+
+        if (!existsSync(jsonFilePath)) {
+          console.error(
+            'swagger.json does not exist at the specified path:',
+            jsonFilePath,
+          );
+          return document;
+        }
+        const fileContents = readFileSync(jsonFilePath, 'utf-8');
+        swaggerJson = JSON.parse(fileContents);
+      } catch (err) {
+        console.error('Error reading swagger.json file:', err);
+        return document;
+      }
+
+      // Example modification for production
+      if (isProduction) {
+        swaggerJson.components = swaggerJson.components || {};
+        swaggerJson.components.schemas = swaggerJson.components.schemas || {};
+
+        swaggerJson.components.schemas.AdditionalSchema = {
+          type: 'object',
+          properties: {
+            id: {
+              type: 'string',
+              description: 'Unique identifier for the new resource',
+            },
+            name: {
+              type: 'string',
+              description: 'Name of the new resource',
+            },
+          },
+          required: ['id', 'name'],
+        };
+      }
+      console.log(swaggerJson);
+      return swaggerJson;
+    },
   });
+
   app.enableCors({
-    origin: '*', // Allow all origins for testing
+    origin: '*',
   });
 
   await app.listen(3000);
