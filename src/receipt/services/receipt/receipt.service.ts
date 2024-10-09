@@ -34,7 +34,17 @@ export class ReceiptService {
     const htmlContent = template({ ...createReceiptDto, baseUrl });
 
     // Launch Puppeteer and generate PDF
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+      headless: true, // Ensure headless mode is enabled for server environments
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-gpu',
+        '--disable-software-rasterizer',
+        '--remote-debugging-port=9222',
+      ],
+    });
+
     const page = await browser.newPage();
     await page.addStyleTag({ url: `${baseUrl}/styles/tailwind.css` });
     await page.setContent(htmlContent);
