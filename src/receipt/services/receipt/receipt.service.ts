@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import * as hbs from 'handlebars';
+import * as hbs from 'hbs';
 import * as fs from 'fs';
 import { join } from 'path';
 import puppeteer from 'puppeteer-core';

@@ -10,7 +10,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { RoleService } from './user/services/role/role.service';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import hbs from 'handlebars';
+import hbs from 'hbs';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
