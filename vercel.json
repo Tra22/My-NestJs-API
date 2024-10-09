@@ -13,6 +13,9 @@
       "use": "@vercel/node"
     }
   ],
+  "scripts": {
+    "build": "npm install && npm run build"
+  },
   "routes": [
     {
       "src": "/swagger.json",
