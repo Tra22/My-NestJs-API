@@ -6,6 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
+    "vercel-build": "npm install && npm run build",
     "build": "nest build",
     "postbuild": "node copy-views.cjs npx ncp dist/views src/views",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
