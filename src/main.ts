@@ -18,6 +18,11 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'public'), {
     prefix: '/',
   });
+  app.useStaticAssets(join(__dirname, '..', 'public/styles'), {
+    prefix: '/styles',
+  });
+  app.setViewEngine('hbs');
+  app.setBaseViewsDir(join(__dirname, 'views'));
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -90,25 +95,25 @@ async function bootstrap() {
       }
 
       // Example modification for production
-      if (isProduction) {
-        swaggerJson.components = swaggerJson.components || {};
-        swaggerJson.components.schemas = swaggerJson.components.schemas || {};
+      // if (isProduction) {
+      //   swaggerJson.components = swaggerJson.components || {};
+      //   swaggerJson.components.schemas = swaggerJson.components.schemas || {};
 
-        swaggerJson.components.schemas.AdditionalSchema = {
-          type: 'object',
-          properties: {
-            id: {
-              type: 'string',
-              description: 'Unique identifier for the new resource',
-            },
-            name: {
-              type: 'string',
-              description: 'Name of the new resource',
-            },
-          },
-          required: ['id', 'name'],
-        };
-      }
+      //   swaggerJson.components.schemas.AdditionalSchema = {
+      //     type: 'object',
+      //     properties: {
+      //       id: {
+      //         type: 'string',
+      //         description: 'Unique identifier for the new resource',
+      //       },
+      //       name: {
+      //         type: 'string',
+      //         description: 'Name of the new resource',
+      //       },
+      //     },
+      //     required: ['id', 'name'],
+      //   };
+      // }
       return swaggerJson;
     },
   });

@@ -1,0 +1,65 @@
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Receipt</title>
+    <link href='{{baseUrl}}/styles/tailwind.css' rel='stylesheet' />
+    <style>
+      .receipt { max-width: 320px; margin: 5px auto; padding: 20px; border: 1px
+      solid #ccc; border-radius: 10px; font-family: 'Arial', sans-serif;
+      font-size: 12px; } .line { border-bottom: 1px dashed #000; margin: 5px 0;
+      } .total { font-size: 16px; font-weight: bold; } .footer { text-align:
+      center; margin-top: 20px; }
+    </style>
+  </head>
+  <body>
+    <div class='receipt bg-white shadow-md'>
+      <div class='text-center w-full'>
+        <h1 class='text-xl font-bold'>{{shopName}}</h1>
+        <p>{{shopAddress}}</p>
+        <p>{{shopPhone}}</p>
+      </div>
+
+      <div class='line'></div>
+
+      <div>
+        <h2 class='text-center font-semibold text-lg mt-2'>CASH RECEIPT</h2>
+        <div class='line'></div>
+
+        <div>
+          <div class='flex justify-between my-1'>
+            <span>Item</span>
+            <span>Price</span>
+          </div>
+          {{#each items}}
+            <div class='flex justify-between my-1'>
+              <span>{{description}}</span>
+              <span>{{price}}</span>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+
+      <div class='line'></div>
+
+      <div class='flex justify-between my-2'>
+        <span>Total</span>
+        <span class='total'>{{total}}</span>
+      </div>
+      <div class='flex justify-between my-2'>
+        <span>Cash</span>
+        <span>{{cash}}</span>
+      </div>
+      <div class='flex justify-between my-2'>
+        <span>Change</span>
+        <span>{{change}}</span>
+      </div>
+
+      <div class='line'></div>
+
+      <div class='footer'>
+        <p>{{message}}</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -660,6 +660,52 @@
           }
         ]
       }
+    },
+    "/receipt": {
+      "post": {
+        "operationId": "ReceiptController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReceiptDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "receipt"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "ReceiptController_root",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "receipt"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -884,6 +930,68 @@
         "required": [
           "name",
           "description"
+        ]
+      },
+      "CreateItemDto": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "description",
+          "price"
+        ]
+      },
+      "CreateReceiptDto": {
+        "type": "object",
+        "properties": {
+          "shopName": {
+            "type": "string"
+          },
+          "shopAddress": {
+            "type": "string"
+          },
+          "shopPhone": {
+            "type": "string"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateItemDto"
+            }
+          },
+          "total": {
+            "type": "number"
+          },
+          "cash": {
+            "type": "number"
+          },
+          "change": {
+            "type": "number"
+          },
+          "bankCardLast4Digits": {
+            "type": "string"
+          },
+          "approvalCode": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "shopName",
+          "shopAddress",
+          "shopPhone",
+          "items",
+          "total",
+          "cash",
+          "change"
         ]
       }
     }

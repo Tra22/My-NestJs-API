@@ -11,6 +11,7 @@ import { Permission } from './user/models/permission.model';
 import { UniqueExistConstraint } from './user/decorators/unique.validation.decorator';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ReceiptModule } from './receipt/receipt.module';
 
 @Module({
   imports: [
@@ -40,8 +41,8 @@ import { join } from 'path';
       }),
     }),
     UserModule,
+    ReceiptModule,
   ],
-  controllers: [],
   providers: [UniqueExistConstraint],
 })
 export class AppModule {}
