@@ -11,18 +11,14 @@ export class ReceiptService {
     createReceiptDto: CreateReceiptDto,
     baseUrl: string,
   ): Promise<Buffer> {
-    const isDevelopment = process.env.NODE_ENV !== 'production';
-    const templatePath = isDevelopment
-      ? join(__dirname, '..', '..', '..', 'views', 'receipt-template.hbs') // For development, use the src/views folder
-      : join(
-          __dirname,
-          '..',
-          '..',
-          '..',
-          'dist',
-          'views',
-          'receipt-template.hbs',
-        ); // For production, use the dist/views folder
+    const templatePath = join(
+      __dirname,
+      '..',
+      '..',
+      '..',
+      'views',
+      'receipt-template.hbs',
+    ); // For development, use the src/views folder
 
     // // Read the Handlebars template from the file
     // const templatePath = join(__dirname, '..', 'views', 'receipt-template.hbs');
