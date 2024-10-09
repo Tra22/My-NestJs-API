@@ -8,8 +8,8 @@ import chromium from '@sparticuz/chromium-min';
 @Injectable()
 export class ReceiptService {
   async create(createReceiptDto, baseUrl: string): Promise<Buffer> {
-    const chromiumPack =
-      'https://github.com/Sparticuz/chromium/releases/download/v121.0.0/chromium-v121.0.0-pack.tar';
+    // const chromiumPack =
+    //   'https://github.com/Sparticuz/chromium/releases/download/v121.0.0/chromium-v121.0.0-pack.tar';
     // Compile Handlebars template
     const templatePath = join(
       __dirname,
@@ -31,7 +31,7 @@ export class ReceiptService {
       browser = await puppeteer.launch({
         args: chromium.args,
         // See https://www.npmjs.com/package/@sparticuz/chromium#running-locally--headlessheadful-mode for local executable path
-        executablePath: await chromium.executablePath(chromiumPack),
+        executablePath: await chromium.executablePath(),
         headless: true,
       });
 
