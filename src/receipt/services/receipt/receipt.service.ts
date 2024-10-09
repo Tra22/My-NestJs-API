@@ -3,11 +3,13 @@ import * as hbs from 'handlebars';
 import * as fs from 'fs';
 import { join } from 'path';
 import puppeteer from 'puppeteer-core';
-import chromium from 'chrome-aws-lambda';
+import chromium from '@sparticuz/chromium-min';
 
 @Injectable()
 export class ReceiptService {
   async create(createReceiptDto, baseUrl: string): Promise<Buffer> {
+    const chromiumPack =
+      'https://github.com/Sparticuz/chromium/releases/download/v121.0.0/chromium-v121.0.0-pack.tar';
     // Compile Handlebars template
     const templatePath = join(
       __dirname,
@@ -28,9 +30,9 @@ export class ReceiptService {
 
       browser = await puppeteer.launch({
         args: chromium.args,
-        executablePath: await chromium.executablePath, // Use the executable path from chromium-aws-lambda
-        headless: true, // Run headless mode
-        defaultViewport: chromium.defaultViewport,
+        // See https://www.npmjs.com/package/@sparticuz/chromium#running-locally--headlessheadful-mode for local executable path
+        executablePath: await chromium.executablePath(chromiumPack),
+        headless: true,
       });
 
       console.log('Browser launched successfully');
