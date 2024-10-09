@@ -3,7 +3,7 @@ import { CreateReceiptDto } from '../../dtos/requests/create-receipt.dto';
 import * as hbs from 'handlebars';
 import { join } from 'path';
 import { readFileSync } from 'fs';
-import puppeteer from 'puppeteer';
+import { chromium } from '@playwright/test'; // Using Playwright
 
 @Injectable()
 export class ReceiptService {
@@ -25,35 +25,25 @@ export class ReceiptService {
         )
       : join(__dirname, '..', '..', '..', 'views', 'receipt-template.hbs');
 
-    // // Read the Handlebars template from the file
-    // const templatePath = join(__dirname, '..', 'views', 'receipt-template.hbs');
+    // Read the Handlebars template from the file
     const templateFile = readFileSync(templatePath, 'utf-8');
     const template = hbs.compile(templateFile);
 
     // Render the HTML content using the HBS template
     const htmlContent = template({ ...createReceiptDto, baseUrl });
 
-    // Launch Puppeteer and generate PDF
-    const browser = await puppeteer.launch({
-      headless: true, // Ensure headless mode is enabled for server environments
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-gpu',
-        '--disable-software-rasterizer',
-        '--remote-debugging-port=9222',
-      ],
+    // Set up Playwright with Chromium (without the need for any external browser)
+    const browser = await chromium.launch({
+      headless: true, // Always true in serverless environments
+      args: ['--no-sandbox', '--disable-setuid-sandbox'], // To avoid permission issues
     });
-
     const page = await browser.newPage();
-    await page.addStyleTag({ url: `${baseUrl}/styles/tailwind.css` });
     await page.setContent(htmlContent);
+    await page.addStyleTag({ url: `${baseUrl}/styles/tailwind.css` });
 
-    const pdfArray: Uint8Array = await page.pdf({ format: 'A6' });
+    // Generate the PDF from the rendered page
+    const pdfBuffer: Buffer = await page.pdf({ format: 'A6' });
     await browser.close();
-
-    // Convert Uint8Array to Buffer and return
-    const pdfBuffer: Buffer = Buffer.from(pdfArray);
 
     return pdfBuffer;
   }
