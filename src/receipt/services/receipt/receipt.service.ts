@@ -45,7 +45,7 @@ export class ReceiptService {
     await page.setContent(renderedHtml, { waitUntil: 'networkidle0' });
 
     const pdfUint8Array = await page.pdf({
-      format: 'A4',
+      format: 'A6',
       printBackground: true,
     });
 
