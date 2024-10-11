@@ -37,7 +37,7 @@ import { ReceiptModule } from './receipt/receipt.module';
         database: config.get('POSTGRES_DATABASE'),
         entities: [User, Role, Permission, RefreshToken],
         synchronize: true,
-        ssl: false, //if no ssl no need to use it.
+        ssl: process.env.IS_DEVELOPEMENT ? true : false, //if no ssl no need to use it.
       }),
     }),
     UserModule,

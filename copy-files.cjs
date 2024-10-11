@@ -13,3 +13,16 @@ ncp(sourceDir, destDir, (err) => {
     console.log(`Successfully copied views from ${sourceDir} to ${destDir}`);
   }
 });
+
+const sourceDirPub = path.join(__dirname, 'public');
+const destDirPub = path.join(__dirname, 'dist', 'public');
+
+ncp(sourceDirPub, destDirPub, (err) => {
+  if (err) {
+    console.error('Error copying public:', err);
+  } else {
+    console.log(
+      `Successfully copied public from ${sourceDirPub} to ${destDirPub}`,
+    );
+  }
+});

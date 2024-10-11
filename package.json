@@ -8,7 +8,7 @@
   "scripts": {
     "vercel-build": "npm install && npm run build",
     "build": "nest build",
-    "postbuild": "node copy-views.cjs npx ncp dist/views src/views",
+    "postbuild": "node copy-files.cjs",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "node dist/main",
     "start:dev": "nest start --watch",
