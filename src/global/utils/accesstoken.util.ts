@@ -6,14 +6,14 @@ export function parseDuration(duration: string): number {
 
   const value = parseInt(match[1], 10);
   const unit = match[2];
-
+  const finalValue = value * 1000;
   switch (unit) {
     case 's': // Seconds
-      return value;
+      return finalValue;
     case 'm': // Minutes
-      return value * 60;
+      return finalValue * 60;
     case 'h': // Hours
-      return value * 3600;
+      return finalValue * 3600;
     default:
       throw new Error('Unknown duration unit');
   }
