@@ -40,7 +40,6 @@ export class ProfileImageService {
       'fonts',
       'Roboto-Regular.ttf',
     );
-    console.log(fontPath);
     registerFont(fontPath, { family: 'Roboto' });
 
     context.font = 'bold 90px "Roboto"';
