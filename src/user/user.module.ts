@@ -18,6 +18,8 @@ import { RoleService } from './services/role/role.service';
 import { PermissionService } from './services/permission/permission.service';
 import { RoleController } from './controllers/role/role.controller';
 import { PermissionController } from './controllers/permission/permission.controller';
+import { ProfileImageController } from './controllers/profile-image/profile-image.controller';
+import { ProfileImageService } from './services/profile-image/profile-image.service';
 
 @Module({
   imports: [
@@ -37,12 +39,14 @@ import { PermissionController } from './controllers/permission/permission.contro
     RefreshTokenStrategy,
     RoleService,
     PermissionService,
+    ProfileImageService,
   ],
   controllers: [
     UserController,
     AuthenticationController,
     RoleController,
     PermissionController,
+    ProfileImageController,
   ],
 })
 export class UserModule {}
