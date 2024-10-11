@@ -36,10 +36,23 @@ export class ProfileImageService {
     // Determine if the text color should be light or dark based on background brightness
     const textColor = this.getContrastingTextColor(backgroundColor);
 
-    // Set the text style (default system font, no custom font)
-    context.font = 'bold 90px sans-serif'; // Removed custom font specification
+    // Set up a base64-encoded font (replace with your actual font file's base64 string)
+    const fontBase64 = `YOUR_BASE64_ENCODED_FONT_HERE`; // Replace with actual font base64 string
 
+    // Load the base64-encoded font into the canvas context
+    context.font = `bold 90px "CustomFont"`;
     context.fillStyle = textColor;
+
+    // Add the font to the canvas
+    const style = `
+      @font-face {
+        font-family: "CustomFont";
+        src: url(data:font/woff2;base64,${fontBase64}) format("woff2");
+      }
+    `;
+    const styleSheet = new CSSStyleSheet();
+    styleSheet.replaceSync(style);
+    document.adoptedStyleSheets = [styleSheet];
 
     // Measure the text width and height for centering
     const textMetrics = context.measureText(initials);
