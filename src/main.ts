@@ -121,11 +121,11 @@ async function bootstrap() {
   });
 
   app.enableCors({
-    origin: true, // Allow all origins
+    origin: '*',
     methods: 'GET,POST,PUT,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
+    credentials: true,
   });
-
   await app.listen(3000);
 }
 
