@@ -20,6 +20,7 @@ import {
   refreshTokenConfig,
 } from '../../../global/config';
 import { UpdateProfileDto } from '../../dtos/requests/authentication/update-profile.dto';
+import { parseDuration } from '../../../global/utils/accesstoken.util';
 
 @Injectable()
 export class AuthenticationService {
@@ -54,6 +55,7 @@ export class AuthenticationService {
   public async signin(dto: SigninDto): Promise<{
     access_token: string;
     refresh_token: string;
+    expires_in: number;
   }> {
     const user = await this.userRepo.findOne({
       where: {
@@ -76,8 +78,8 @@ export class AuthenticationService {
       sub: user.id,
       email: user.email,
     };
-
-    const accessToken = this.generateJWT(payload, accessTokenConfig());
+    const configAccesssToken = accessTokenConfig();
+    const accessToken = this.generateJWT(payload, configAccesssToken);
     const refreshToken = this.generateJWT(payload, refreshTokenConfig());
 
     const doc = await this.refreshTokenRepo.findOne({ where: { user } });
@@ -88,6 +90,7 @@ export class AuthenticationService {
       return {
         access_token: accessToken,
         refresh_token: refreshToken,
+        expires_in: parseDuration(configAccesssToken.expiresIn),
       };
     }
 
@@ -99,6 +102,7 @@ export class AuthenticationService {
     return {
       access_token: accessToken,
       refresh_token: refreshToken,
+      expires_in: parseDuration(configAccesssToken.expiresIn),
     };
   }
 
@@ -107,6 +111,7 @@ export class AuthenticationService {
     dto: RefreshtokenDto,
   ): Promise<{
     access_token: string;
+    expires_in: number;
   }> {
     const refreshToken = await this.refreshTokenRepo.findOne({
       where: { token: dto.refreshToken },
@@ -118,11 +123,12 @@ export class AuthenticationService {
       sub: user.id,
       email: user.email,
     };
-
-    const accessToken = this.generateJWT(payload, accessTokenConfig());
+    const config = accessTokenConfig();
+    const accessToken = this.generateJWT(payload, config);
 
     return {
       access_token: accessToken,
+      expires_in: parseDuration(config.expiresIn),
     };
   }
 
