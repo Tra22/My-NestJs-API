@@ -36,8 +36,9 @@ export class ProfileImageService {
     // Determine if the text color should be light or dark based on background brightness
     const textColor = this.getContrastingTextColor(backgroundColor);
 
-    // Set the text style: bold font, centered, and with calculated size
-    context.font = 'bold 90px Arial';
+    // Set the text style (default system font, no custom font)
+    context.font = 'bold 90px sans-serif'; // Removed custom font specification
+
     context.fillStyle = textColor;
 
     // Measure the text width and height for centering
