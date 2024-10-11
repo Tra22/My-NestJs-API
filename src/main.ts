@@ -120,9 +120,22 @@ async function bootstrap() {
     },
   });
 
+  const allowedOrigins = [
+    'http://localhost:3000',
+    'http://localhost:3000/',
+    'https://my-nest-js-api.vercel.app',
+  ];
+
   app.enableCors({
-    origin: 'http://localhost:3000', // The exact origin for local development
-    methods: 'GET,POST,PUT,DELETE',
+    origin: (origin, callback) => {
+      // Allow requests from both localhost and Vercel domains
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('CORS not allowed'), false);
+      }
+    },
+    methods: 'GET,POST,PUT,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type,Authorization',
     credentials: true,
   });
