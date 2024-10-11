@@ -35,6 +35,7 @@ export class ProfileImageService {
       '..',
       '..',
       '..',
+      '..',
       'public',
       'fonts',
       'Roboto-Regular.ttf',
