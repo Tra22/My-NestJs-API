@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { User } from '../../models';
 import { InjectRepository } from '@nestjs/typeorm';
 import { createHash } from 'crypto';
-import * as path from 'path'; // Import path for file handling
+import { join } from 'path';
 @Injectable()
 export class ProfileImageService {
   constructor(
@@ -30,11 +30,16 @@ export class ProfileImageService {
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     const textColor = this.getContrastingTextColor(backgroundColor);
-
-    const fontPath = path.join(
+    const fontPath = join(
       __dirname,
-      '../../../public/fonts/Roboto-Regular.ttf',
+      '..',
+      '..',
+      '..',
+      'public',
+      'fonts',
+      'Roboto-Regular.ttf',
     );
+    console.log(fontPath);
     registerFont(fontPath, { family: 'Roboto' });
 
     context.font = 'bold 90px "Roboto"';
