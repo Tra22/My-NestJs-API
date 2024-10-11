@@ -121,7 +121,9 @@ async function bootstrap() {
   });
 
   app.enableCors({
-    origin: '*',
+    origin: true, // Allow all origins
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
   });
 
   await app.listen(3000);
